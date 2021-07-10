@@ -1,7 +1,7 @@
 # animated-form
 This is a small project developed from a form with some animations made with CSS.
 
-![alt text](int-page.png)
+![alt text](md/int-page.png)
 
 # Animations
 - Form entry animation; 
