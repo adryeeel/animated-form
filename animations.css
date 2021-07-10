@@ -1,0 +1,73 @@
+body {
+  overflow: hidden;
+}
+
+#form-box {
+  overflow: hidden;
+}
+
+@keyframes slide-left {
+  from {
+    transform: translateX(-70vw) scale(2);
+  }
+  to {
+    transform: translateX(0) scale(1) rotate(360deg);
+  }
+} 
+
+section > div {
+  animation: slide-left 1.5s;
+  animation-timing-function: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+@keyframes no-no {
+  0%,
+  50%,
+  100% {
+    transform: translateX(0%);
+  }
+  25% {
+    transform: translateX(-15%);
+  }
+
+  75% {
+    transform: translateX(15%);
+  }
+}
+
+.no-no {
+  animation: no-no 200ms linear, slide-left paused;
+  animation-iteration-count: 2;
+}
+
+@keyframes slide-right {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(70vw);
+  }
+}
+
+.form-hidden {
+  animation: slide-right 500ms forwards;
+  animation-timing-function: cubic-bezier(0.6, -0.1, 0.74, 0.05);
+}
+
+@keyframes up {
+  from {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-130vh) rotate(960deg);
+  }
+}
+
+.squares li {
+  animation: up 5s infinite alternate;
+}
