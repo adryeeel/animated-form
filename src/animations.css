@@ -2,18 +2,14 @@ body {
   overflow: hidden;
 }
 
-#form-box {
-  overflow: hidden;
-}
-
 @keyframes slide-left {
   from {
-    transform: translateX(-70vw) scale(2);
+    transform: translateX(-100vw) scale(2);
   }
   to {
     transform: translateX(0) scale(1) rotate(360deg);
   }
-} 
+}
 
 section > div {
   animation: slide-left 1.5s;
@@ -45,7 +41,7 @@ section > div {
     transform: translateX(0);
   }
   to {
-    transform: translateX(70vw);
+    transform: translateX(100vw);
   }
 }
 

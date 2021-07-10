@@ -33,7 +33,7 @@ for (let i = 0; i < 15; i++) {
   const random = (min, max) => Math.floor(Math.random() * (max - min) + min);
 
   const size = random(30, 60);
-  const postion = random(1, 99);
+  const postion = random(0, 85);
   const delay = random(0.1, 10);
   const duration = random(12, 24);
   const borderRadius = random(0, 100);
