@@ -1,0 +1,107 @@
+@charset "UTF-8";
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+* {
+  margin: 0;
+  border: 0;
+  padding: 0;
+
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", Arial, Helvetica, sans-serif;
+  background-color: #d7e3ef;
+}
+
+header {
+  text-align: center;
+  color: #34446b;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+#container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#form-box {
+  display: flex;
+  flex-flow: column wrap;
+  align-content: center;
+  justify-content: center;
+
+  background-color: #ecf0f3;
+  padding: 20px;
+  box-shadow: 6px 6px 12px 2px rgba(0, 0, 0, 0.2),
+    -4px -4px 16px 2px rgba(255, 255, 255, 0.4);
+  border-radius: 30px;
+}
+
+.input-block {
+  margin-bottom: 10px;
+}
+
+.input-block,
+.login-button {
+  color: #34446b;
+  font-weight: 500;
+}
+
+.input-block input {
+  display: block;
+  width: 100%;
+  color: #7b87a7;
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+  outline-color: #34446b;
+}
+
+.logo {
+  display: block;
+  width: 110px;
+  border-radius: 100%;
+  margin: 0 auto;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.input-block input::placeholder {
+  color: gray;
+}
+
+.input-block label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.login-button {
+  display: block;
+  margin: 0 auto;
+  width: 100px;
+  padding: 5px 10px;
+  border-radius: 30px;
+  box-shadow: -2px -2px 4px #cbced1, 2px 2px 4px white;
+}
+
+.pressed {
+  box-shadow: inset 2px 2px 4px #cbced1, inset -2px -2px 4px white;
+}
+
+.squares li {
+  display: block;
+  position: absolute;
+  border-radius: 10px;
+  bottom: -20vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  z-index: -10;
+}
