@@ -25,12 +25,6 @@ loginButton.addEventListener("click", (event) => {
   }
 });
 
-// formBox.addEventListener("animationstart", (event) => {
-//   if (event.animationName === "slide-right") {
-//     document.querySelector("body").style.overflow = "hidden";
-//   }
-// });
-
 formBox.addEventListener("animationend", (event) => {
   if (event.animationName === "slide-right") {
     formBox.style.display = "none";
