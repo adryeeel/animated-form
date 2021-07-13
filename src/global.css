@@ -2,126 +2,264 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-* {
-  margin: 0;
-  border: 0;
-  padding: 0;
+:root {
+	--text-color: #34446b;
+	--form-bg-color: #ecf0f3;
+	--light-box-shadow: white;
+	--dark-box-shadow: #cbced1;
+}
 
-  box-sizing: border-box;
+* {
+	margin: 0;
+	border: 0;
+	padding: 0;
+
+	box-sizing: border-box;
 }
 
 body {
-  font-family: "Montserrat", Arial, Helvetica, sans-serif;
-  background-color: #d7e3ef;
+	height: 100vh;
+	width: 100vw;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	font-family: "Montserrat", Arial, Helvetica, sans-serif;
+
+	background-color: #d7e3ef;
+	color: var(--text-color);
 }
 
-header {
-  text-align: center;
-  color: #34446b;
-  text-transform: uppercase;
-  margin-bottom: 10px;
-}
+h1 {
+	font-size: 1.5rem;
+	text-align: center;
+	text-transform: uppercase;
 
-#container {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+	margin-bottom: 10px;
 }
 
 #form-box {
-  z-index: 2;
-  display: flex;
-  flex-flow: column wrap;
-  align-content: center;
-  justify-content: center;
+	z-index: 2;
 
-  background-color: #ecf0f3;
-  padding: 20px;
-  box-shadow: 6px 6px 12px 2px rgba(0, 0, 0, 0.2),
-    -4px -4px 16px 2px rgba(255, 255, 255, 0.4);
-  border-radius: 30px;
+	display: flex;
+	flex-flow: column wrap;
+	align-content: center;
+	justify-content: center;
+
+	padding: 20px;
+
+	border-radius: 30px;
+	background-color: var(--form-bg-color);
+	box-shadow: 6px 6px 12px 2px var(--dark-box-shadow),
+		-4px -4px 16px 2px var(--light-box-shadow);
 }
 
 #success-div {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  position: absolute;
-  z-index: 1;
+	display: flex;
+	flex-flow: column;
+	align-items: center;
+
+	position: absolute;
+	z-index: 1;
 }
 
 #success-div p {
-  text-transform: uppercase;
-  font-size: 2rem;
-  font-weight: 500;
-  color: #34446b;
+	font-size: 2rem;
+	font-weight: 500;
+	text-transform: uppercase;
+
+	color: var(--text-color);
 }
 
 #success-div img {
-  width: 18%;
+	width: 18%;
+}
+
+.google-logo {
+	display: block;
+	width: 110px;
+
+	padding: 10px;
+	margin: 0 auto 20px auto;
+
+	border-radius: 100%;
+	box-shadow: 6px 6px 6px var(--dark-box-shadow),
+		-6px -6px 6px var(--light-box-shadow);
+}
+
+.input-block:nth-child(1) {
+	margin-bottom: 20px;
 }
 
 .input-block {
-  margin-bottom: 10px;
+	position: relative;
+	margin-bottom: 10px;
 }
 
 .input-block,
 .login-button {
-  color: #34446b;
-  font-weight: 500;
+	font-weight: 600;
+	color: var(--text-color);
 }
 
-.input-block input {
-  display: block;
-  width: 100%;
-  color: #7b87a7;
-  background: #ecf0f3;
-  padding: 10px;
-  padding-left: 20px;
-  font-size: 14px;
-  border-radius: 50px;
-  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
-  outline-color: #34446b;
+.input-block input#email,
+.pw-field {
+	display: block;
+	width: 100%;
+	padding: 10px 10px 10px 20px;
+
+	font-size: 14px;
+
+	color: #7b87a7;
+	background-color: var(--form-bg-color);
+	outline-color: var(--text-color);
+
+	border-radius: 50px;
+	box-shadow: inset 6px 6px 6px var(--dark-box-shadow),
+		inset -6px -6px 6px var(--light-box-shadow);
+	outline: none;
 }
 
-.logo {
-  display: block;
-  width: 110px;
-  border-radius: 100%;
-  margin: 0 auto;
-  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
-  padding: 10px;
-  margin-bottom: 20px;
+.pw-field {
+	display: flex;
+}
+
+.pw-field > .show-pw-button {
+	margin-left: 5px;
+}
+
+.input-block input#password {
+	background-color: transparent;
+	color: #7b87a7;
+	outline: none;
 }
 
 .input-block input::placeholder {
-  color: gray;
+	color: gray;
 }
 
 .input-block label {
-  display: block;
-  margin-bottom: 5px;
+	display: block;
+	margin: 0 0 5px 5px;
+}
+
+.input-block .show-pw-button .fa-eye-slash {
+	display: none;
+}
+
+.input-block .show-pw-button.active .fa-eye-slash {
+	display: inline-block;
+}
+
+.input-block .show-pw-button.active .fa-eye {
+	display: none;
+}
+
+.strength-meter {
+	background-color: rgba(17, 17, 17, 0.2);
+	position: relative;
+	margin: 10px auto 0 auto;
+	width: 90%;
+	height: 5px;
+	border-radius: 10px;
+	opacity: 0;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+.strength-meter span {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 0;
+	height: 100%;
+	border-radius: 10px;
+	transition: all 300ms ease-in-out;
+	background-color: #111;
 }
 
 .login-button {
-  display: block;
-  margin: 0 auto;
-  width: 100px;
-  padding: 5px 10px;
-  border-radius: 30px;
-  box-shadow: -2px -2px 4px #cbced1, 2px 2px 4px white;
+	display: block;
+	width: 100px;
+
+	margin: 0 auto;
+	padding: 5px 10px;
+
+	border-radius: 30px;
+	box-shadow: -2px -2px 4px var(--dark-box-shadow),
+		2px 2px 4px var(--light-box-shadow);
+}
+
+.message.invalid-field {
+	position: absolute;
+	background-color: rgba(255, 0, 0, 0.3);
+	border: 2px solid red;
+}
+
+.message.valid-field {
+	background-color: rgba(0, 128, 0, 0.3);
+	border: 2px solid green;
 }
 
 .pressed {
-  box-shadow: inset 2px 2px 4px #cbced1, inset -2px -2px 4px white;
+	box-shadow: inset 2px 2px 4px var(--dark-box-shadow),
+		inset -2px -2px 4px var(--light-box-shadow);
 }
 
 .squares li {
-  display: block;
-  position: absolute;
-  border-radius: 10px;
-  bottom: -20vh;
-  background-color: rgba(255, 255, 255, 0.5);
-  z-index: 0;
+	display: block;
+
+	position: absolute;
+	bottom: -20vh;
+	z-index: 0;
+
+	border-radius: 10px;
+
+	background-color: rgba(255, 255, 255, 0.5);
+}
+
+#pwd-hints {
+	display: flex;
+	flex-flow: column wrap;
+
+	width: 292px;
+	height: 405px;
+
+	padding: 20px;
+	position: absolute;
+	z-index: 1;
+
+	border-radius: 30px;
+	background-color: var(--form-bg-color);
+	box-shadow: 6px 6px 12px 2px var(--dark-box-shadow),
+		-4px -4px 16px 2px var(--light-box-shadow);
+}
+
+#pwd-hints > *:nth-child(2) {
+	align-self: center;
+	margin-top: 25%;
+}
+
+#pwd-hints h2 {
+	margin-bottom: 20px;
+	text-align: center;
+}
+
+#pwd-message > p {
+	margin-bottom: 10px;
+}
+
+.valid-tip {
+	color: green;
+}
+
+.invalid-tip {
+	color: red;
+}
+
+.invalid-tip:before,
+.valid-tip:before {
+	content: "✔";
 }
