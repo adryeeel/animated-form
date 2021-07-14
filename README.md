@@ -5,9 +5,10 @@ This is a small project developed from a form with some animations made with CSS
 ![alt text](md/page2.png)
 
 # Animations
-- Form entry animation; 
+- Form entry animation;
 - Form out animation;
-- Animation no-no, in case the email/password fields are empty;
+- Animation no-no, in case the email/password fields be invalid;
 - Animatoions of random bubble that are at the background of the page;
+- Inputs validation
 
 [Página do projeto](https://adryelrocha.github.io/animated-form/src/index.html)
