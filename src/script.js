@@ -1,30 +1,11 @@
 // Animations script
 
-const loginButton = document.querySelector(".login-button");
+const loginButton = document.querySelector("form .login-button");
 const formBox = document.getElementById("form-box");
+const meter = document.querySelector(".input-block .strength-meter");
 const passwordField = document.getElementById("password");
-
-loginButton.addEventListener("click", (event) => {
-	const fields = [...document.querySelectorAll(".input-block input")];
-
-	fields.forEach((field) => {
-		if (field.value === "") {
-			formBox.classList.add("no-no");
-		}
-	});
-
-	const checkError = document.querySelector(".no-no");
-	if (checkError) {
-		checkError.addEventListener("animationend", (event) => {
-			if (event.animationName === "no-no") {
-				checkError.classList.remove("no-no");
-			}
-		});
-	} else {
-		loginButton.classList.add("pressed");
-		formBox.classList.add("form-hidden");
-	}
-});
+const fields = [...document.querySelectorAll(".input-block input")];
+const pwdHints = document.getElementById("pwd-hints");
 
 formBox.addEventListener("animationend", (event) => {
 	if (event.animationName === "slide-right") {
@@ -32,29 +13,44 @@ formBox.addEventListener("animationend", (event) => {
 	}
 });
 
-const pwdHints = document.getElementById("pwd-hints");
+function verifyErrors(field) {
+	let foundError = false;
 
-passwordField.addEventListener("focus", (event) => {
-	meter.style.opacity = "1";
+	for (let error in field.validity) {
+		if (field.validity[error] && !field.validity.valid) {
+			foundError = error;
+		}
+	}
+	return foundError;
+}
 
-	pwdHints.style.display = "block";
-	pwdHints.classList.add("slide-out");
-});
+loginButton.addEventListener("click", (event) => {
+	let allFieldsValid = 0;
 
-passwordField.addEventListener("blur", (event) => {
-	// Hide the meter when the field loses its focus
-	meter.style.opacity = "0";
+	for (let field of fields) {
+		let hasError = verifyErrors(field);
 
-	pwdHints.classList.add("slide-in");
+		if (hasError || pwdAllTipsIsTrue == false) {
+			event.preventDefault();
 
-	if (pwdHints) {
-		pwdHints.addEventListener("animationend", (event) => {
-			if (event.animationName === "slide-in") {
-				pwdHints.style.display = "none";
-				pwdHints.classList.remove("slide-in");
-				pwdHints.classList.remove("slide-out");
-			}
-		});
+			formBox.classList.add("no-no");
+			pwdHints.classList.add("no-no");
+
+			formBox.addEventListener("animationend", (event) => {
+				if (event.animationName === "no-no") {
+					formBox.classList.remove("no-no");
+					pwdHints.classList.remove("no-no");
+				}
+			});
+		} else {
+			allFieldsValid++;
+		}
+	}
+
+	if (allFieldsValid == 2) {
+		pwdHints.style.display = "none";
+		loginButton.classList.add("pressed");
+		formBox.classList.add("form-hidden");
 	}
 });
 
@@ -97,9 +93,13 @@ function pwdTips(password) {
 	let upperCaseLetters = /[A-Z]/g;
 	let numberCase = /[0-9]/g;
 
+	let checkPasswordValid = 0;
+
 	if (password.match(lowerCaseLetters)) {
 		letter.classList.remove("invalid-tip");
 		letter.classList.add("valid-tip");
+
+		checkPasswordValid++;
 	} else {
 		letter.classList.remove("valid-tip");
 		letter.classList.add("invalid-tip");
@@ -108,6 +108,8 @@ function pwdTips(password) {
 	if (password.match(upperCaseLetters)) {
 		capital.classList.remove("invalid-tip");
 		capital.classList.add("valid-tip");
+
+		checkPasswordValid++;
 	} else {
 		capital.classList.remove("valid-tip");
 		capital.classList.add("invalid-tip");
@@ -116,6 +118,8 @@ function pwdTips(password) {
 	if (password.match(numberCase)) {
 		number.classList.remove("invalid-tip");
 		number.classList.add("valid-tip");
+
+		checkPasswordValid++;
 	} else {
 		number.classList.remove("valid-tip");
 		number.classList.add("invalid-tip");
@@ -124,6 +128,8 @@ function pwdTips(password) {
 	if (password.match(symbolCase)) {
 		symbol.classList.remove("invalid-tip");
 		symbol.classList.add("valid-tip");
+
+		checkPasswordValid++;
 	} else {
 		symbol.classList.remove("valid-tip");
 		symbol.classList.add("invalid-tip");
@@ -132,9 +138,17 @@ function pwdTips(password) {
 	if (passwordField.value.length >= 8) {
 		length.classList.remove("invalid-tip");
 		length.classList.add("valid-tip");
+
+		checkPasswordValid++;
 	} else {
 		length.classList.remove("valid-tip");
 		length.classList.add("invalid-tip");
+	}
+
+	if (checkPasswordValid === 5) {
+		return true;
+	} else {
+		return false;
 	}
 }
 
@@ -172,17 +186,7 @@ function passwordMeter() {
 	PasswordStrength(password.value);
 }
 
-let meter = document.querySelector(".input-block .strength-meter");
-
-// Show the meter when a click event happens in the password field.
-passwordField.addEventListener("focus", (event) => {
-	meter.style.opacity = "1";
-
-	passwordField.addEventListener("keyup", (event) => {
-		passwordMeter();
-		pwdTips(passwordField.value);
-	});
-});
+var pwdAllTipsIsTrue;
 
 document
 	.querySelector(".input-block .show-pw-button")
@@ -204,15 +208,42 @@ document
 		}
 	});
 
-const fields = document.querySelectorAll("[required]");
+passwordField.onfocus = function () {
+	meter.style.opacity = "1";
 
-fields.forEach((field) => {
-	field.addEventListener("invalid", (event) => {
-		event.preventDefault();
+	passwordField.addEventListener("keyup", () => {
+		passwordMeter();
+		pwdAllTipsIsTrue = pwdTips(passwordField.value);
 	});
-});
+
+	pwdHints.style.display = "flex";
+
+	pwdHints.animate(
+		[{ transform: "translateX(0px)" }, { transform: "translateX(292px)" }],
+		{
+			duration: 500,
+			direction: "alternate",
+			easing: "ease-in-out",
+			fill: "forwards",
+		}
+	);
+};
+
+passwordField.onblur = function () {
+	meter.style.opacity = "0";
+
+	pwdHints.animate(
+		[{ transform: "translateX(292px)" }, { transform: "translateX(0px)" }],
+		{
+			duration: 500,
+			direction: "alternate",
+			easing: "ease-in-out",
+			fill: "forwards",
+		}
+	);
+};
 
 document.querySelector("form").addEventListener("submit", (event) => {
 	event.preventDefault();
-	console.log("Formulário válido enviado.");
+	console.log("Valid form submited");
 });
