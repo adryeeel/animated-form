@@ -4,7 +4,7 @@ This is a small project developed from a form with some animations made with CSS
 ![alt text](md/int-page.png)
 ![alt text](md/page2.png)
 
-# Animations
+# Features
 - Form entry animation;
 - Form out animation;
 - Password strength meter;
