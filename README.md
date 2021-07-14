@@ -2,6 +2,7 @@
 This is a small project developed from a form with some animations made with CSS.
 
 ![alt text](md/int-page.png)
+![alt text](md/page2.png)
 
 # Animations
 - Form entry animation; 
